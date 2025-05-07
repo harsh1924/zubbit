@@ -34,15 +34,15 @@ parent: Each file/folder can have one parent folder
 children: Each folder can have many child files/folder
 */
 
-export const filesRelations = relations(files, ({ one, many }) => {
+export const filesRelations = relations(files, ({ one, many }) => ({
     parent: one(files, {
         fields: [files.parentId],
         references: [files.id]
-    });
+    }),
 
     // Relationship to child file/folder
     children: many(files)
-})
+}));
 
 // Type definations
 export const File = typeof files.$inferSelect
