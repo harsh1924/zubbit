@@ -2,7 +2,7 @@ import { pgTable, text, uuid, integer, boolean, timestamp } from "drizzle-orm/pg
 import { relations } from "drizzle-orm";
 
 export const files = pgTable("files", {
-    id: uuid("id").unique().defaultRandom().primaryKey(),
+    id: uuid("id").defaultRandom().primaryKey(),
 
     // Basic File/Folder Information
     name: text("name").notNull(),
