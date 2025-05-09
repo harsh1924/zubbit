@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
         const body = await req.json();
         const { imagekit, userId: bodyUserId } = body;
 
+        // Auth
         if (bodyUserId !== userId) {
             return NextResponse.json({
                 error: "Unauthorized"
@@ -43,7 +44,10 @@ export async function POST(req: NextRequest) {
             isTrash: false
         }
 
-        const [newFile] = await db.insert(files).values(fileData).returning()
+        const [newFile] = await db
+            .insert(files)
+            .values(fileData)
+            .returning();
         return NextResponse.json(newFile)
 
     } catch (error) {
