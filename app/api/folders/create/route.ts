@@ -70,9 +70,11 @@ export async function POST(req: NextRequest) {
             success: true,
             message: "Folder created successfully",
             folder: newFolder
-        }, { status: 500 })
+        }, { status: 200 })
 
     } catch (error: any) {
-
+        return NextResponse.json({
+            error: "Error creating folder"
+        }, { status: 500 })
     }
 }
